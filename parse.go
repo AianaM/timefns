@@ -5,11 +5,6 @@ import (
 	"time"
 )
 
-// DateOnly "2006-01-02"
-func ParseDateOnly(s string) (time.Time, error) {
-	return time.Parse(time.DateOnly, s)
-}
-
 func Parse(s string) (time.Time, error) {
 	if strings.Contains(s, "Z") {
 		return ParseISO8601(s)

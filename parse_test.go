@@ -5,43 +5,6 @@ import (
 	"time"
 )
 
-func TestParseDateOnly(t *testing.T) {
-	type args struct {
-		s string
-	}
-	tests := []struct {
-		name    string
-		args    args
-		want    time.Time
-		wantErr bool
-	}{
-		{
-			name:    "valid date",
-			args:    args{s: "2023-04-15"},
-			want:    time.Date(2023, 4, 15, 0, 0, 0, 0, time.UTC),
-			wantErr: false,
-		},
-		{
-			name:    "invalid date format",
-			args:    args{s: "15/04/2023"},
-			want:    time.Time{},
-			wantErr: true,
-		},
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			got, err := ParseDateOnly(tt.args.s)
-			if (err != nil) != tt.wantErr {
-				t.Errorf("ParseDateOnly() error = %v, wantErr %v", err, tt.wantErr)
-				return
-			}
-			if !tt.wantErr && !got.Equal(tt.want) {
-				t.Errorf("ParseDateOnly() = %v, want %v", got, tt.want)
-			}
-		})
-	}
-}
-
 func TestParse(t *testing.T) {
 	type args struct {
 		s string
